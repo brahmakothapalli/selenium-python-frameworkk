@@ -1,11 +1,12 @@
 from page_objects.login_page_objects import LoginPageObjects
 from page_objects.products_page_objects import ProductPageObjects
+from utilities.read_configuration import ReadConfiguration
 
 
 class TestProductPage:
-    url = "https://www.saucedemo.com/"
-    user_name = "standard_user"
-    password = "secret_sauce"
+    url = ReadConfiguration.get_url()
+    user_name = ReadConfiguration.get_username()
+    password = ReadConfiguration.get_password()
 
     def test_add_item_to_cart(self, get_driver):
         driver = get_driver
@@ -19,4 +20,3 @@ class TestProductPage:
             print("Product added successfully to the car")
         else:
             print("Failed to add the product to the cart")
-
