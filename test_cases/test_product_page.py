@@ -1,6 +1,6 @@
 from page_objects.login_page_objects import LoginPageObjects
 from page_objects.products_page_objects import ProductPageObjects
-from utilities.read_configuration import ReadConfiguration
+from utils.read_configuration import ReadConfiguration
 
 
 class TestProductPage:

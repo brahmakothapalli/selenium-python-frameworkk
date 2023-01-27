@@ -1,6 +1,6 @@
 from page_objects.login_page_objects import LoginPageObjects
-from utilities.read_configuration import ReadConfiguration
-from utilities.logger_config import LoggerConfiguration
+from utils.read_configuration import ReadConfiguration
+from utils.logger_config import LoggerConfiguration
 
 
 class TestLoginPage:

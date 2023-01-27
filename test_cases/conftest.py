@@ -7,7 +7,7 @@ from selenium.webdriver.edge.service import Service as EdgeService
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
-from utilities.read_configuration import ReadConfiguration
+from utils.read_configuration import ReadConfiguration
 
 
 @pytest.fixture()
