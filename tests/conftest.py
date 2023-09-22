@@ -10,8 +10,10 @@ def get_driver():
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get("https://practicetestautomation.com/practice-test-login/")
     driver.maximize_window()
+    driver.implicitly_wait(30)
+    driver.delete_all_cookies()
+    driver.get("https://practicetestautomation.com/practice-test-login/")    
     yield driver
     print("****** closing the browser driver ********")
     driver.quit()
