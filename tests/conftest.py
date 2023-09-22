@@ -1,28 +1,24 @@
 import pytest
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from selenium.webdriver.edge.service import Service as EdgeService
-from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-
 from utils.read_configuration import ReadConfiguration
+
 
 
 @pytest.fixture()
 def get_driver(get_browser):
+    ''' returns browser driver'''
     driver = None
     if get_browser == "chrome" or get_browser is None:
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        driver = webdriver.Chrome()
     elif get_browser == "firefox":
-        driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+        driver = webdriver.Firefox()
     elif get_browser == "edge":
-        driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
+        driver = webdriver.Edge()
     driver.maximize_window()
     driver.get(ReadConfiguration.get_url())
     driver.implicitly_wait(15)
     return driver
+
 
 
 def pytest_addoption(parser):
@@ -36,11 +32,13 @@ def pytest_addoption(parser):
 
 @pytest.fixture()
 def get_browser(request):
+    '''returns browser type'''
     return request.config.getoption("--browser")
 
 
 # to add info to pytest html report
 def pytest_configure(config):
+    ''' adding pytest report details'''
     config._metadata['Project Name'] = 'selenium-python-framework'
     config._metadata['Organization'] = 'QABABU Works'
     config._metadata['Author'] = "Brahma Rao Kothapalli"
@@ -49,10 +47,12 @@ def pytest_configure(config):
 # to delete/modify info in pytest html report
 @pytest.mark.optionlhook
 def pytest_metadata(metadata):
+    '''pytest details'''
     metadata.pop('JAVA_HOME', None)
     metadata.pop('Plugins', None)
     metadata.pop('Packages', None)
 
 
 def capture_screenshot(driver):
+    '''take the screenshot'''
     driver.get_screenshot_as_file("screenshots/page.png")
