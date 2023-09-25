@@ -1,43 +1,31 @@
-''' sample python tests'''
+""" sample python tests"""
 import time
 import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+
+from page_objects.login_page_objects import LoginPageObjects
+
 
 class TestValidLoginPageCases:
-    ''' login page tests'''
+    """ login page tests"""
 
     @pytest.mark.login
     def test_login_positive(self, get_driver):
-        '''validating login functionality'''        
-        user_name_field = get_driver.find_element(By.ID, "username")
-        password_field = get_driver.find_element(By.ID, "password")
-        submit_button = get_driver.find_element(By.ID, "submit")
-        user_name_field.send_keys("student")    
-        password_field.send_keys("Password123")
-        submit_button.click()
-        message = get_driver.find_element(By.TAG_NAME, "h1")
-        success_message = message.text
-        assert success_message == "Logged In Successfully"
-        actual_url = get_driver.current_url
-        assert "logged-in-successfully" in actual_url
-        log_out_button = get_driver.find_element(By.LINK_TEXT, 'Log out')
-        assert log_out_button.is_displayed(), "logout button not displayed"
+        """validating login functionality"""
+        login_page = LoginPageObjects(get_driver)
+        login_page.enter_user_credentials("student", "Password123")
+        login_page.click_submit_button()
+        assert login_page.get_login_success_text() == "Logged In Successfully"
+        assert "logged-in-successfully" in login_page.get_current_url
+        assert login_page.is_logout_button_displayed(), "logout button not displayed"
         print("***** Test successfully executed :: test_login_positive *****")
-    
 
     @pytest.mark.login
     def test_login_negative(self, get_driver):
-        '''validating login functionality'''
-        user_name_field = get_driver.find_element(By.ID, "username")
-        password_field = get_driver.find_element(By.ID, "password")
-        submit_button = get_driver.find_element(By.ID, "submit")
-        user_name_field.send_keys("student")    
-        password_field.send_keys("wrongpassword")
-        submit_button.click()
+        """validating login functionality"""
+        login_page = LoginPageObjects(get_driver)
+        login_page.enter_user_credentials("student", "wrong password")
+        login_page.click_submit_button()
         time.sleep(3)
-        error = get_driver.find_element(By.ID, "error")
-        error_message = error.text
-        assert error_message.strip() == "Your password is invalid!"        
+        assert login_page.get_error_text() == "Your password is invalid!", "login error text not matched"
         print("***** Test successfully executed :: test_login_negative *****")

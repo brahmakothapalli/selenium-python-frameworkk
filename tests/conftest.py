@@ -1,7 +1,7 @@
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import pytest
+
 
 @pytest.fixture()
 def get_driver():
@@ -13,7 +13,7 @@ def get_driver():
     driver.maximize_window()
     driver.implicitly_wait(30)
     driver.delete_all_cookies()
-    driver.get("https://practicetestautomation.com/practice-test-login/")    
+    driver.get("https://practicetestautomation.com/practice-test-login/")
     yield driver
     print("****** closing the browser driver ********")
     driver.quit()
