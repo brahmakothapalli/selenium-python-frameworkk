@@ -1,0 +1,25 @@
+{
+  "test_login_positive": [
+    {
+      "run": "Y",
+      "username": "student",
+      "password": "Password123",
+      "success_text": "Logged In Successfully",
+      "url_text": "logged-in-successfully"
+    },
+    {
+      "run": "N",
+      "username": "student",
+      "password": "Password123",
+      "success_text": "Logged In Successfully",
+      "url_text": "logged-in-successfully"
+    }
+  ],
+  "test_login_negative": [
+    {
+      "username": "student",
+      "password": "wrong password",
+      "error_text": "Your password is invalid!"
+    }
+  ]
+}

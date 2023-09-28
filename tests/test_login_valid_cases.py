@@ -1,7 +1,7 @@
 """ sample python tests"""
 import time
+from ddt import ddt, data, unpack
 import pytest
-from selenium.webdriver.common.by import By
 
 from page_objects.login_page_objects import LoginPageObjects
 
@@ -14,10 +14,10 @@ class TestValidLoginPageCases:
         """validating login functionality"""
         login_page = LoginPageObjects(get_driver)
         login_page.enter_user_credentials("student", "Password123")
-        login_page.click_submit_button()
+        dashboard_page = login_page.click_submit_button()
         assert login_page.get_login_success_text() == "Logged In Successfully"
         assert "logged-in-successfully" in login_page.get_current_url
-        assert login_page.is_logout_button_displayed(), "logout button not displayed"
+        assert dashboard_page.is_logout_button_displayed(), "logout button not displayed"
         print("***** Test successfully executed :: test_login_positive *****")
 
     @pytest.mark.login
