@@ -32,5 +32,3 @@ def get_driver(driver=None):
     yield thread_driver.driver
     print("****** closing the browser driver ********")
     thread_driver.driver.quit()
-
-

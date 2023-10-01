@@ -1,6 +1,6 @@
 """ sample python tests"""
 import time
-from ddt import ddt, data, unpack
+
 import pytest
 
 from page_objects.login_page_objects import LoginPageObjects

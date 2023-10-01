@@ -23,4 +23,3 @@ class TestParameterizedCases:
             time.sleep(3)
             assert login_page.get_error_text() == expected_message, "error message not displayed"
         print("***** Test successfully executed :: test_login_positive *****")
-
