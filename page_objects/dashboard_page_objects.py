@@ -1,5 +1,7 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
+
+from helpers.waits_helper import WaitsHelper
 from utils import logger_config
 from base.BasePage import BasePage
 
@@ -16,4 +18,5 @@ class DashboardPageObjects(BasePage):
 
     def is_logout_button_displayed(self) -> bool:
         self.logger.info("checking logout button after login")
+        WaitsHelper.wait_for_element_visibility(self.driver, self.__logout_button)
         return self.is_element_displayed(self.__logout_button)

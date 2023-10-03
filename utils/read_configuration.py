@@ -19,3 +19,12 @@ def get_username():
 
 def get_password():
     return config.get('config data', 'password')
+
+
+def get_timeperiod():
+    return config.get('test env', 'time_period')
+
+
+
+def get_polling_frequency():
+    return config.get('test env', 'polling_frequency')
