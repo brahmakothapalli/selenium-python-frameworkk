@@ -33,4 +33,4 @@ class BasePage:
     def take_screen_shot(self):
         current_file_path = os.getcwd()
         current_working_path = os.path.dirname(current_file_path)
-        self.driver.save_screenshot(current_working_path+"//results_report//screenshot.png")
+        self.driver.save_screenshot(current_working_path+"//reports//screenshot.png")

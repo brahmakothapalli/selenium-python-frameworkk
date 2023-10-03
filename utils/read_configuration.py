@@ -2,7 +2,7 @@ import configparser
 import sys
 
 config = configparser.RawConfigParser()
-config.read(sys.path[0] + "/configurations/config.ini")
+config.read(sys.path[0] + "/pytest.ini")
 
 
 def get_browser():
