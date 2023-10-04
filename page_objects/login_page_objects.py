@@ -20,8 +20,12 @@ class LoginPageObjects(BasePage):
 
     def enter_user_credentials(self, user_name, password):
         self.logger.info("entering user credentials")
-        self.enter_text(self.__username_field, user_name)
-        self.enter_text(self.__password_field, password)
+        try:
+            self.enter_text(self.__username_field, user_name)
+            self.enter_text(self.__password_field, password)
+        except Exception as e:
+            self.logger.error("failed to enter the credentials :: enter_user_credentials", e)
+            raise e
 
     def click_submit_button(self):
         self.logger.info("clicking on the submit button")
