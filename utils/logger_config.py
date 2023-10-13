@@ -1,6 +1,6 @@
 import inspect
 import logging
-import sys
+from pathlib import Path
 
 
 def get_logger(log_level=logging.DEBUG):
@@ -9,7 +9,12 @@ def get_logger(log_level=logging.DEBUG):
     logger.setLevel(log_level)
 
     console_handle = logging.StreamHandler()
-    file_handle = logging.FileHandler("../logs/logs.log")
+
+    root_dir = Path().cwd().parent
+
+    logs_file_path = str(root_dir)+"/logs/logs.log"
+
+    file_handle = logging.FileHandler(logs_file_path)
 
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(module)s - %(message)s',
                                   datefmt='%m/%d/%Y %I:%M:%S %p')
