@@ -19,6 +19,7 @@ def get_logger(log_level=logging.DEBUG):
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(module)s - %(message)s',
                                   datefmt='%m/%d/%Y %I:%M:%S %p')
     console_handle.setFormatter(formatter)
+    print("Sample test code")
     file_handle.setFormatter(formatter)
     logger.addHandler(console_handle)
     logger.addHandler(file_handle)
