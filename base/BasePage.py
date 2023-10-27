@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as ec
 
 class BasePage:
 
-    def __int__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver):
         self.driver = driver
 
     def find(self, locator):

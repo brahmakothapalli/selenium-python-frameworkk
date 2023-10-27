@@ -1,12 +1,11 @@
-""" login page tests tests"""
-
+from page_objects.login_page_objects import LoginPageObjects
 import pytest
 
-from page_objects.login_page_objects import LoginPageObjects
 
-
-class TestValidLoginPageCases:
+class TestLoginPageScenarios:
     """ login page tests"""
+
+    # class name must start with "Test"
 
     @pytest.mark.login
     def test_login_positive(self, get_driver):

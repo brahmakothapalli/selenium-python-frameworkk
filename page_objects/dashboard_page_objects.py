@@ -12,7 +12,7 @@ class DashboardPageObjects(BasePage):
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
-        super().__int__(driver)
+        super().__init__(driver)
 
     __logout_button = (By.LINK_TEXT, 'Log out')
 

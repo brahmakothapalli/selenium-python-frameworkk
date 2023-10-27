@@ -24,5 +24,3 @@ def get_logger(log_level=logging.DEBUG):
     logger.addHandler(console_handle)
     logger.addHandler(file_handle)
     return logger
-
-

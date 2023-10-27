@@ -1,22 +1,22 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from base.BasePage import BasePage
-from page_objects.dashboard_page_objects import DashboardPageObjects
+from page_objects.products_page_objects import ProductsPageObjects
 
 from utils import logger_config
 
 
 class LoginPageObjects(BasePage):
     logger = logger_config.get_logger()
-    __username_field = (By.ID, "username")
+    __username_field = (By.ID, "user-name")
     __password_field = (By.ID, "password")
-    __submit_button = (By.ID, "submit")
+    __login_button = (By.ID, "login-button")
     __login_success_text = (By.TAG_NAME, "h1")
-    __login_error_text = (By.ID, "error")
+    __login_error_text = (By.TAG_NAME, "h3")
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
-        super().__int__(driver)
+        super().__init__(driver)
 
     def enter_user_credentials(self, user_name, password):
         self.logger.info("entering user credentials")
@@ -27,11 +27,10 @@ class LoginPageObjects(BasePage):
             self.logger.error("failed to enter the credentials :: enter_user_credentials", e)
             raise e
 
-    def click_submit_button(self):
+    def click_submit_button(self) -> ProductsPageObjects:
         self.logger.info("clicking on the submit button")
-        self.click(self.__submit_button)
-        dashboard_page = DashboardPageObjects(self.driver)
-        return dashboard_page
+        self.click(self.__login_button)
+        return ProductsPageObjects(self.driver)
 
     def get_login_success_text(self) -> str:
         self.logger.info("getting login success text")
