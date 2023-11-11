@@ -27,7 +27,7 @@ class LoginPageObjects(BasePage):
             self.logger.error("failed to enter the credentials :: enter_user_credentials", e)
             raise e
 
-    def click_submit_button(self) -> ProductsPageObjects:
+    def click_login_button(self) -> ProductsPageObjects:
         self.logger.info("clicking on the submit button")
         self.click(self.__login_button)
         return ProductsPageObjects(self.driver)

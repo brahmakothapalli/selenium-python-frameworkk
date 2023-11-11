@@ -10,6 +10,7 @@ class ProductsPageObjects(BasePage):
     # locators
     __products_text = (By.XPATH, "//div[@class='header_secondary_container']/span")
     __cart_icon = (By.XPATH, "//div[@id='shopping_cart_container']/a")
+    __sauce_lab_backpack_add_to_cart = (By.ID, "add-to-cart-sauce-labs-backpack")
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
@@ -23,3 +24,9 @@ class ProductsPageObjects(BasePage):
 
     def is_cart_icon_displayed(self) -> None:
         assert self.find(self.__cart_icon).is_displayed()
+
+    def add_backpack_to_cart(self) -> None:
+        self.click(self.__sauce_lab_backpack_add_to_cart)
+
+    def navigate_to_cart(self) -> None:
+        self.click(self.__cart_icon)
